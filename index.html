@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HANGMAN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <main>
+        <div class="banner"><h1>PRESS ANY KEY TO START!</h1></div>
+
+        <div class="head row">
+            <h2>WINS:</h2> 
+            <div class="wins">0</div>
+        </div>
+
+        <div class="head row">
+            <h2>GUESSES REMAINING:</h2> 
+            <div class="guesses-remaining">10</div>
+        </div>
+            <!-- WILL NEED TO USE JS TO TAKE RANDOMLY SELECTED WORD FROM ARRAY, AND GENERATE string.length NUMBER OF DIV BOXES FOR EACH LETTER. THEN FILL THEM WITH INDIVIDIUAL LETTERS (DISPLAY: NONE) THEN WHEN A CORRECT LETTER IS GUESSED (indexOf(guess) !== "-1") FILL IN THAT DIV BOX WITH CORRECT GUESS. (TOGGLE CLASS "UNHIDE")  -->
+        <div class="word">
+            <div class="letter">B</div><div class="letter">L</div><div class="letter">A</div><div class="letter">N</div><div class="letter">K</div>
+        </div>
+    </main>
+
+
+</body>
+</html>

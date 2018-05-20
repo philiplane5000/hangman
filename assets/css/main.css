@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: url('../images/photo-1521623910227-0c1b070ffec0.jpg') no-repeat center;
+}
+
+main {
+    width: 960px;
+    margin: 0 auto;
+    padding: 25px;
+    border: 2px dashed cyan;
+    background-color: rgba(255,255,255, 0.85);
+}
+
+.word {
+    display: flex;
+}
+
+.row {
+    display: flex;
+}
+
+.head h2 {
+    width: 300px;
+    border: 1px dashed blue;
+}
+
+.letter {
+    width: 100px;
+    border-bottom: 2px solid cyan;
+    margin: 10px;
+    text-align: center;
+}
+
+.hide { /*class to toggle on individual div letter boxes*/
+    display: none;
+}
