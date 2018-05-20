@@ -3,15 +3,14 @@
 }
 
 html {
-    background: url('../images/photo-1521623910227-0c1b070ffec0.jpg') no-repeat center;
+    background: url('../images/photo-1521623910227-0c1b070ffec0.jpg');
+    background-position: translate(25%, 75%);
+    font-size: 10px;
 }
 
-main {
-    width: 960px;
-    margin: 0 auto;
-    padding: 25px;
-    border: 2px dashed cyan;
-    background-color: rgba(255,255,255, 0.85);
+.siimple-grid { /*IF CANNOT UNDERSTAND SIIMPLE CONTAINER SYSTEM - STYLE THE GRID AND USE MEDIA QUERIES ACCORDINGLY */
+    max-width: 1200px;
+    background-color: rgba(255,255,255, 0.5);
 }
 
 .word {
@@ -22,16 +21,26 @@ main {
     display: flex;
 }
 
+.wins {
+    align-content: center;
+}
+
 .head h2 {
     width: 300px;
     border: 1px dashed blue;
 }
 
+.word-container {
+    display: flex;
+    float: none;
+}
+
 .letter {
-    width: 100px;
+    flex: 1;
     border-bottom: 2px solid cyan;
     margin: 10px;
     text-align: center;
+    font-size: 4em;
 }
 
 .hide { /*class to toggle on individual div letter boxes*/
