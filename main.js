@@ -3,59 +3,77 @@ console.log('CONNECTED');
 let dinosaursArray = ["Velociraptor", "Spinosaurus", "Stegosaurus", "Avimimus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops"];   
 let wordPlaceHolder = document.querySelector(".word-container");
 let resetBtn = document.querySelector(".new-game");
+let guessPlaceHolder = document.querySelector(".guesses")
+console.log(guessPlaceHolder);
+let winsPlaceHolder = document.querySelector(".wins");
+console.log(winsPlaceHolder);
+
 let guessesLeft = 10;
 let totalNumberOfWins = 0;
 let lettersGuessed = [];
+let currentDinosaur = "";
+let currentDinosaurNameAsArray = [];
 
 //GAME START:
-
 newGame();
+
+//EVENT LISTENERS:
 resetBtn.addEventListener("click", newGame);
 
-// document.onkeyup = function(e) {
-//     lettersGuessed.push(e.key);
-//     console.log(lettersGuessed);
-// }
-//OTHER EVENT LISTENERS:
-
-// document.onkeyup = function(e){
-//     console.log(e.key);
-// }
 
 
-
+//GAME LOGIC:
 function newGame() {
     cleanGameBoard();
-    document.querySelector(".guess").innerHTML = "<h3>" + guessesLeft + "</h3>";
-    document.querySelector(".wins").innerHTML = "<h3>" + totalNumberOfWins + "</h3>";
     dinosaurNameGenerator();
-    letterTracker();
+    checkGuess();
+    updateBoard();
 }
 
 function cleanGameBoard() {
     wordPlaceHolder.innerHTML = "";
-    guessesLeft = 10;
-    totalNumberOfWins = 0;
-    lettersGuessed = [];
+    let guessesLeft = 10;
+    guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
+    let totalNumberOfWins = 0;
+    winsPlaceHolder.innerHTML = "<h3>" + totalNumberOfWins + "</h3>";
+    currentDinosaurNameAsArray = [];
 }
 
 function dinosaurNameGenerator() {
-    let dino = dinosaursArray[(Math.floor(Math.random() * dinosaursArray.length))];
-    // console.log(dino);
-    for(let i = 0; i < dino.length; i++){
+    let dino = dinosaursArray[(Math.floor(Math.random() * dinosaursArray.length))].toUpperCase();
+    currentDinosaur = dino;
+    for(let j = 0; j < dino.length; j++){
+        currentDinosaurNameAsArray.push(dino[j])
+    }
+    console.log(currentDinosaurNameAsArray);
+    for(let i = 0; i < currentDinosaurNameAsArray.length; i++){
         wordPlaceHolder.innerHTML += "<div class=\"letter-container\">"
-        + "<div class=\"hide letter siimple-box--small\">" + dino.charAt(i) + "</div>" 
+        + "<div class=\"hide letter siimple-box--small " + currentDinosaurNameAsArray[i] + "\"" + ">" + currentDinosaurNameAsArray[i] + "</div>" 
         + "</div>";
     }
 }
 
-function letterTracker() {
-    document.onkeyup = function(e) {
-        lettersGuessed.push(e.key);
-        console.log(lettersGuessed);
+function checkGuess() {
+    document.onkeyup = function(e) { 
+        let currentGuess = e.key;
+        if(currentDinosaurNameAsArray.includes(currentGuess)) {
+        let matchingGuess = document.getElementsByClassName(`${currentGuess}`);
+            for(let m = 0; m <= matchingGuess.length; m++){
+                matchingGuess[m].classList.remove('hide');
+            }
+        } else {
+        guessesLeft -= 1;
+        updateBoard();
+        console.log(currentGuess);
+        }
+    
     }
 }
 
+function updateBoard() {
+    guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
+    winsPlaceHolder.innerHTML = "<h3>" + totalNumberOfWins + "</h3>";
+}
 
 
 
