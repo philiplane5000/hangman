@@ -4,9 +4,7 @@ let dinosaursArray = ["Velociraptor", "Spinosaurus", "Stegosaurus", "Avimimus", 
 let wordPlaceHolder = document.querySelector(".word-container");
 let resetBtn = document.querySelector(".new-game");
 let guessPlaceHolder = document.querySelector(".guesses")
-console.log(guessPlaceHolder);
 let winsPlaceHolder = document.querySelector(".wins");
-console.log(winsPlaceHolder);
 
 let guessesLeft = 10;
 let totalNumberOfWins = 0;
@@ -24,17 +22,19 @@ resetBtn.addEventListener("click", newGame);
 
 //GAME LOGIC:
 function newGame() {
+
     cleanGameBoard();
     dinosaurNameGenerator();
     checkGuess();
     updateBoard();
+
 }
 
 function cleanGameBoard() {
     wordPlaceHolder.innerHTML = "";
-    let guessesLeft = 10;
+    guessesLeft = 10;
     guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
-    let totalNumberOfWins = 0;
+    totalNumberOfWins = 0;
     winsPlaceHolder.innerHTML = "<h3>" + totalNumberOfWins + "</h3>";
     currentDinosaurNameAsArray = [];
 }
@@ -61,19 +61,24 @@ function checkGuess() {
             for(let m = 0; m <= matchingGuess.length; m++){
                 matchingGuess[m].classList.remove('hide');
             }
-        } else {
-        guessesLeft -= 1;
-        updateBoard();
-        console.log(currentGuess);
-        }
-    
+            } else {
+                guessesLeft -= 1;
+                updateBoard();
+                console.log(currentGuess);
+                }
     }
 }
 
 function updateBoard() {
-    guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
-    winsPlaceHolder.innerHTML = "<h3>" + totalNumberOfWins + "</h3>";
+    if(guessesLeft <= 0){
+        alert("GAME OVER!");
+        newGame();
+    } else {
+        guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
+        winsPlaceHolder.innerHTML = "<h3>" + totalNumberOfWins + "</h3>";
+    }
 }
+
 
 
 
