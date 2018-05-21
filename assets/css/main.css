@@ -10,7 +10,7 @@ html {
 
 .siimple-grid { /*IF CANNOT UNDERSTAND SIIMPLE CONTAINER SYSTEM - STYLE THE GRID AND USE MEDIA QUERIES ACCORDINGLY */
     max-width: 1200px;
-    background-color: rgba(255,255,255, 0.5);
+    background-color: rgba(255,255,255, 0.75);
 }
 
 .word {
@@ -44,7 +44,7 @@ html {
 
 .letter {
     flex: 1;
-    margin: 10px;
+    margin: .15em;
     text-align: center;
     font-size: 4em;
 }
@@ -52,13 +52,3 @@ html {
 .hide { /*class to toggle on individual div letter boxes*/
     opacity: 0;
 }
-
-/* .underline {
-    flex: 1;
-    position: relative;
-    top: 6em;
-    right: 55px;
-    height: 3px;
-    background-color: rgb(5, 227, 235);
-    width: 100%;
-} */
