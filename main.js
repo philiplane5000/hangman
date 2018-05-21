@@ -18,6 +18,9 @@ newGame();
 
 //EVENT LISTENERS:
 resetBtn.addEventListener("click", newGame);
+resetBtn.addEventListener("mouseenter", function(){
+    this.style.boxShadow = "2px 2px 2px rgba(0,0,0,0.5)";
+});
 
 
 
@@ -89,11 +92,3 @@ function updateBoard() {
             };
     }
 }
-
-
-
-
-// for(let q = 0; q < lettersGuessed.length; q++){
-//     lettersGuessedPlaceHolder.innerHTML = "<div class=\"letter-container\">"
-//     + "<div class=\"letter siimple-box--small\">" + lettersGuessed[q].toUpperCase() + "</div>"; 
-//     };

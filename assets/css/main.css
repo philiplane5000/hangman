@@ -17,6 +17,20 @@ html {
 .siimple-jumbotron {
     padding: 80px 0;
 }
+
+.siimple-btn {
+    display: flex;
+    width: 250px;
+    height: 90px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.siimple-btn h3 {
+    flex: 1;
+    line-height: 60px;
+}
+
 .word {
     display: flex;
 }
