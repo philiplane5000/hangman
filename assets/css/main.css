@@ -54,6 +54,19 @@ html {
     float: none;
 }
 
+.letters-guessed-container {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    float: none;
+}
+
+.letters-guessed-container h3 {
+    font-size: 4em;
+    margin: 10px;
+    /* text-transform: uppercase; */
+}
+
 .letter-container {
     display: flex;
     flex: 1;
@@ -68,6 +81,6 @@ html {
     font-size: 4em;
 }
 
-.hide { /*class to toggle on individual div letter boxes*/
+.dino-hide { /*class to toggle on individual DINO letter boxes*/
     opacity: 0;
 }
