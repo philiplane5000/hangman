@@ -1,7 +1,7 @@
 console.log('CONNECTED');
 
 //HTML LOCATION VARIABLES:
-let dinosaursArray = ["Velociraptor", "Spinosaurus", "Stegosaurus", "Avimimus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops"];
+let dinosaursArray = ["Velociraptor", "Spinosaurus", "Stegosaurus", "Avimimus", "Hadrosaurus", "Heptasteornis", "Heterodontosaurus", "Hylaeosaurus", "Kotasaurus", "Othnielia", "Jaxartosaurus", "Kritosaurus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops", "Ultrasauros", "Utahraptor", "Valdosaurus"];
 let wordPlaceHolder = document.querySelector(".word-container");
 let lettersGuessedStrPlaceHolder = document.querySelector(".letters-guessed-container");
 let resetBtn = document.querySelector(".new-game");
@@ -138,6 +138,8 @@ function gameLogic() {
                 guessesLeft--;
                 if (guessesLeft === 0) {
                     alert("GAME OVER!");
+                    alert("PLEASE REVIEW:" + "\n" + "www.DinoDictionary.com");
+                    wins = 0;
                     newGame();
                     return;
                 }
