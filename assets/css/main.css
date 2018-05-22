@@ -10,7 +10,7 @@ html {
 
 .siimple-grid { /*IF CANNOT UNDERSTAND SIIMPLE CONTAINER SYSTEM - STYLE THE GRID AND USE MEDIA QUERIES ACCORDINGLY */
     max-width: 1200px;
-    min-width: 720px;
+    min-width: 735px;
     background-color: rgba(255,255,255, 0.75);
 }
 
@@ -46,6 +46,25 @@ html {
 .head h2 {
     width: 300px;
     border: 1px dashed blue;
+}
+
+.top-features {
+    min-width: 960px;
+
+}
+
+.instructions, .new-game {
+    display: inline-block;
+    width: 250px;
+}
+
+.new-game {
+    margin-right: 500px;
+}
+
+.instructions {
+    text-align: center;
+    transform: skewX(-2.5deg)
 }
 
 .word-container {

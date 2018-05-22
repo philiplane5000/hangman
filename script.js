@@ -1,5 +1,6 @@
 console.log('CONNECTED');
 
+//HTML LOCATION VARIABLES:
 let dinosaursArray = ["Velociraptor", "Spinosaurus", "Stegosaurus", "Avimimus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops"];
 let wordPlaceHolder = document.querySelector(".word-container");
 let lettersGuessedStrPlaceHolder = document.querySelector(".letters-guessed-container");
@@ -7,41 +8,63 @@ let resetBtn = document.querySelector(".new-game");
 let guessPlaceHolder = document.querySelector(".guesses")
 let winsPlaceHolder = document.querySelector(".wins");
 
+//NUMBER OR STRING VARIABLES TO AFFECT:
 let guessesLeft = 10;
 let wins = 0;
 let lettersGuessedStr = "";
 let currentDinosaur = "";
 let currentDinosaurNameAsArray = [];
-
-
+let unknownDinosaurLetters = 1;
 
 //GAME START:
 newGame();
 
 //EVENT LISTENERS:
 resetBtn.addEventListener("click", newGame);
-resetBtn.addEventListener("mouseenter", function () {
-    this.style.boxShadow = "2px 2px 2px rgba(0,0,0,0.5)";
-});
-
-
 
 //GAME LOGIC:
 function newGame() {
-    //PREPARE GAME BOARD:
+    //prepare new gameboard:
     resetWinsTally(0);
     resetGuessTally();
     wipeLetters();
     dinosaurNameGenerator();
-    //POWER GAME LOGIC:
-    checkGuess();
+    //power game logic:
+    gameLogic();
+    // updateBoard();
+}
+
+function newGameForChampion() {
+    lettersGuessedStr = "";
+    unknownDinosaurLetters = 0;
+    resetGuessTally();
+    wipeLetters();
+    dinosaurNameGenerator();
+    //restart game logic:
     updateBoard();
+    gameLogic();
+}
+
+function updateBoard() {
+    //UPDATE GUESS TALLY ON BOARD:
+    guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
+    //EMPTY GAMEBOARD STRINGS, REFILL WITH UPDATED LETTERSGUESSED:
+    lettersGuessedStrPlaceHolder.innerHTML = "";
+    lettersGuessedStrPlaceHolder.innerHTML = "<h3>" + lettersGuessedStr + "</h3>";
+    //UPDATE WINS TALLY: (possibly unneccessary)
+    resetWinsTally(wins);
+}
+
+function resetGuessTally() {
+    guessesLeft = 10;
+    guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
 }
 
 function wipeLetters() {
     wordPlaceHolder.innerHTML = "";
     currentDinosaurNameAsArray = [];
     lettersGuessedStr = "";
+    lettersGuessedStrPlaceHolder.innerHTML = "<h3>" + lettersGuessedStr + "</h3>";
 }
 
 function dinosaurNameGenerator() {
@@ -56,69 +79,82 @@ function dinosaurNameGenerator() {
             + "<div class=\"dino-hide letter siimple-box--small " + currentDinosaurNameAsArray[i] + "\"" + ">" + currentDinosaurNameAsArray[i] + "</div>"
             + "</div>";
     }
+    // unknownDinosaurLetters = document.querySelectorAll('.dino-hide').length;
+    // console.log(unknownDinosaurLetters);
 }
 
-function checkGuess() {
-    document.onkeyup = function (e) {
-        let currentGuess = e.key.toUpperCase();
-        let currentGuessKey = e.keyCode;
-        console.log(currentGuess);
-        if (currentGuessKey < 65 || currentGuessKey > 90) {
-            alert('LETTERS ONLY!');
-            return;
-        } else if (currentDinosaurNameAsArray.includes(currentGuess)) {
-            if (document.querySelectorAll('.dino-hide').length === 0) {
-                wins++;
-                resetWinsTally(wins);
+function gameLogic() {
+
+        document.onkeyup = function (e) {
+            //SET THE LETTER/GUESS UP FOR CHECKING:
+            let unknownDinosaurLetters = document.getElementsByClassName('dino-hide').length;
+            let currentGuess = e.key.toUpperCase();
+            let currentGuessKey = e.keyCode;
+            console.log(unknownDinosaurLetters);
+            console.log(currentGuess);
+
+
+            //no.1 - alert if CHAMPION
+            //check if dinosaur word is complete:
+            if (unknownDinosaurLetters <= 0) {
                 alert("CHAMPION!");
-                wipeLetters();
-                resetGuessTally();
-                dinosaurNameGenerator();
-                checkGuess();
+                wins++;
+                newGameForChampion();
                 return;
-            } else {
-                let matchingGuess = document.getElementsByClassName(`${currentGuess}`);
-                for (let m = 0; m <= matchingGuess.length; m++) {
-                    if (!(matchingGuess[m] === undefined)) {
-                        matchingGuess[m].classList.remove('dino-hide');
-                    } else {
-                        console.log('NO MATCH HERE');
-                    }
+                //^ same as newGame() minus reset of wins tally:
+            } 
+            //no.2 - alert if key is not a valid letter
+            if (currentGuessKey < 65 || currentGuessKey > 90) {
+                alert('LETTERS ONLY!');
+                // return;
                 }
+            //BEGIN CHECKING FOR GUESS ACCURACY:
+            //no.3 - check if guess is correct and affect gameboard accordingly:
+            else if (currentDinosaurNameAsArray.includes(currentGuess)) {
+                let matchingGuess = document.getElementsByClassName(`${currentGuess}`);
+                //if there is a matching guess, run a for loop to uncover the HTML:
+                if(matchingGuess){
+                    console.log(matchingGuess);
+                    for(let m = 0; m <= matchingGuess.length; m++) {
+                        if(!(matchingGuess[m] === undefined)) {
+                        matchingGuess[m].classList.remove('dino-hide');
+                        } 
+                    }
+                    //end uncover of html loop
+                }
+                // return;
+            }
+            //no.4 - check if current guesses matches a previously guessed entry:
+            else if (lettersGuessedStr.includes(currentGuess)) {
+                alert("PREVIOUSLY GUESSED LETTER!");
+                return;
+            } 
+      
+            /*all else if statements here END */
+            /*if nothing above applies, append guessed letter to "lettersGuessedStr" && deduct one guess*/
+            else {
+                lettersGuessedStr += (currentGuess + ", ");
+                console.log(lettersGuessedStr);
+                guessesLeft--;
+                if (guessesLeft === 0) {
+                    alert("GAME OVER!");
+                    newGame();
+                    return;
+                }
+                updateBoard();
+            }
+            
             }
 
-        } else if (lettersGuessedStr.includes(currentGuess)) {
-            alert("PREVIOUSLY GUESSED LETTER!");
-            return;
-        } else {
-            lettersGuessedStr += (currentGuess + ", ");
-            console.log(lettersGuessedStr);
-            guessesLeft--;
-            updateBoard();
-        }
-    }
-
+        //DO THIS REGARDLESS AFTER EVERY KEY PRESS:
+    // updateBoard();
+    /*END OF GAMELOGIC*/
 }
-
-function updateBoard() {
-    if (guessesLeft <= 0) {
-        alert("GAME OVER!");
-        newGame();
-    } else {
-        //UPDATE GUESSES:
-        guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
-        //RESET STRING(?):
-        lettersGuessedStrPlaceHolder.innerHTML = "";
-        lettersGuessedStrPlaceHolder.innerHTML = "<h3>" + lettersGuessedStr + "</h3>"
-    }
-}
+    //====================================================END OF GAME LOGIC FUNCTION====================================================//
 
 function resetWinsTally(wins) {
-    totalNumberOfWins = wins;
-    winsPlaceHolder.innerHTML = "<h3>" + totalNumberOfWins + "</h3>";
+    //UPDATE WINS SEPARATELY TO ALLOW FOR CARRYOVER WHEN GAME RESETS:
+    totalWinsCount = wins;
+    winsPlaceHolder.innerHTML = "<h3>" + totalWinsCount + "</h3>";
 }
 
-function resetGuessTally() {
-    guessesLeft = 10;
-    guessPlaceHolder.innerHTML = "<h3>" + guessesLeft + "</h3>";
-}
