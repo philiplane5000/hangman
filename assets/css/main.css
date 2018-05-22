@@ -8,7 +8,7 @@ html {
     font-size: 10px;
 }
 
-.siimple-grid { /*IF CANNOT UNDERSTAND SIIMPLE CONTAINER SYSTEM - STYLE THE GRID AND USE MEDIA QUERIES ACCORDINGLY */
+.siimple-grid {
     max-width: 1200px;
     min-width: 735px;
     background-color: rgba(255,255,255, 0.75);
@@ -19,17 +19,24 @@ html {
 }
 
 .siimple-btn {
-    display: flex;
     width: 250px;
     height: 90px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin: 0 10px 10px 10px;
 }
 
-.siimple-btn h3 {
+.siimple-btn, .siimple-tip {
     flex: 1;
-    line-height: 60px;
 }
+
+.simple-tip {
+    margin-top: 10px;
+}
+
+.invisible {
+    opacity: 0;
+}
+
+/* GAME BOARD: */
 
 .word {
     display: flex;
@@ -48,23 +55,9 @@ html {
     border: 1px dashed blue;
 }
 
-.top-features {
-    min-width: 960px;
-
-}
-
-.instructions, .new-game {
-    display: inline-block;
-    width: 250px;
-}
-
-.new-game {
-    margin-right: 500px;
-}
-
 .instructions {
     text-align: center;
-    transform: skewX(-2.5deg)
+    /* transform: skewX(-2.5deg); */
 }
 
 .word-container {

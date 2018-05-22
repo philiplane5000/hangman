@@ -2,9 +2,10 @@ console.log('CONNECTED');
 
 //HTML LOCATION VARIABLES:
 let dinosaursArray = ["Velociraptor", "Spinosaurus", "Stegosaurus", "Avimimus", "Hadrosaurus", "Heptasteornis", "Heterodontosaurus", "Hylaeosaurus", "Kotasaurus", "Othnielia", "Jaxartosaurus", "Kritosaurus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops", "Ultrasauros", "Utahraptor", "Valdosaurus"];
+// let dinosaursArray = ["Tyrannosaurus Rex"]; /*WILL NOT WORK UNTIL SPACE KEY ADDED SOMEHOW */
 let wordPlaceHolder = document.querySelector(".word-container");
 let lettersGuessedStrPlaceHolder = document.querySelector(".letters-guessed-container");
-let resetBtn = document.querySelector(".new-game");
+let resetBtn = document.querySelector(".siimple-btn--pink");
 let guessPlaceHolder = document.querySelector(".guesses")
 let winsPlaceHolder = document.querySelector(".wins");
 
@@ -70,6 +71,7 @@ function wipeLetters() {
 function dinosaurNameGenerator() {
     let randomDino = dinosaursArray[(Math.floor(Math.random() * dinosaursArray.length))].toUpperCase();
     console.log(randomDino);
+    currentDinosaur = randomDino; /*for alert*/
     for (let j = 0; j < randomDino.length; j++) {
         currentDinosaurNameAsArray.push(randomDino[j]);
     }
@@ -126,18 +128,19 @@ function gameLogic() {
             }
             //no.4 - check if current guesses matches a previously guessed entry:
             else if (lettersGuessedStr.includes(currentGuess)) {
-                alert("PREVIOUSLY GUESSED LETTER!");
+                alert("YOU ALREADY GUESSED:   " + "'" + currentGuess + "'");
                 return;
             } 
       
             /*all else if statements here END */
             /*if nothing above applies, append guessed letter to "lettersGuessedStr" && deduct one guess*/
             else {
-                lettersGuessedStr += (currentGuess + ", ");
+                lettersGuessedStr += (currentGuess + ",  ");
                 console.log(lettersGuessedStr);
                 guessesLeft--;
                 if (guessesLeft === 0) {
                     alert("GAME OVER!");
+                    alert("THE DINO THAT STUMPED YOU WAS:   " + currentDinosaur + " .");
                     alert("PLEASE REVIEW:" + "\n" + "www.DinoDictionary.com");
                     wins = 0;
                     newGame();
