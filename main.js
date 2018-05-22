@@ -61,8 +61,8 @@ function dinosaurNameGenerator() {
 function checkGuess() {
     document.onkeyup = function (e) {
         let currentGuess = e.key.toUpperCase();
-        console.log(currentGuess);
         let currentGuessKey = e.keyCode;
+        console.log(currentGuess);
         if (currentGuessKey < 65 || currentGuessKey > 90) {
             alert('LETTERS ONLY!');
             return;
