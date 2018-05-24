@@ -9,6 +9,7 @@ let winsPlaceHolder              = document.querySelector(".wins");
 let guessesLeft                  = 10;
 let totalWins                    = 0;
 let lettersGuessedStr            = "";
+let correctLettersGuessedStr     = "";
 let currentDinosaur              = "";
 let currentDinosaurNameAsArray   = [];
 let unknownDinosaurLetters       = 1;
@@ -40,6 +41,7 @@ let gameBoard = {
         wordPlaceHolder.innerHTML = "";
         currentDinosaurNameAsArray = [];
         lettersGuessedStr = "";
+        correctLettersGuessedStr = "";
         lettersGuessedStrPlaceHolder.innerHTML = "";
         lettersGuessedStrPlaceHolder.innerHTML = "<h3>" + lettersGuessedStr + "</h3>";
     },
@@ -74,7 +76,7 @@ let gameBoard = {
 
 function checkGuess() {
 
-    document.onkeyup = function (e) {
+    document.onkeyup = function(e) {
         //SET THE LETTER/GUESS UP FOR CHECKING:
         let unknownDinosaurLetters = document.getElementsByClassName('dino-hide').length;
         let currentGuess = e.key.toUpperCase();
@@ -98,11 +100,16 @@ function checkGuess() {
             alert('LETTERS ONLY!');
             // return;
         }
-
+        //no.3 (a) check if current guesses matches a previously guessed entry:
+        else if (lettersGuessedStr.includes(currentGuess) || correctLettersGuessedStr.includes(currentGuess)) {
+            (correctLettersGuessedStr.includes(currentGuess)) ? alert("YOU ALREADY CORRECTLY GUESSED:   " + "'" + currentGuess + "'") : alert("YOU SHOULD ALREADY KNOW THAT,  " + "'" + currentGuess + "'  IS NOT IN THERE...");            
+        }
         //==============================BEGIN CHECKING FOR GUESS ACCURACY:==============================//
 
-        //no.3 - check if guess is correct and affect gameboard accordingly:
+        //no.4 - if new guess is correct, affect gameboard accordingly:
         else if (currentDinosaurNameAsArray.includes(currentGuess)) {
+            correctLettersGuessedStr += (currentGuess + ", ");
+            console.log("CORRECT LETTERS GUESSED STR: " + correctLettersGuessedStr);
             let matchingGuess = document.getElementsByClassName(`${currentGuess}`);
             //if there is a matching guess, run a for loop to uncover the HTML:
             if (matchingGuess) {
@@ -112,15 +119,8 @@ function checkGuess() {
                         matchingGuess[m].classList.remove('dino-hide');
                     }
                 }
-                //end uncover of html loop
             }
             // return;
-        }
-
-        //no.4 - check if current guesses matches a previously guessed entry:
-        else if (lettersGuessedStr.includes(currentGuess)) {
-            alert("YOU ALREADY GUESSED:   " + "'" + currentGuess + "'");
-            return;
         }
 
         /*all else if statements here END */

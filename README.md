@@ -10,6 +10,7 @@
     - Use siimple alerts to style them(?)
 * Work on CSS styles and screen resizing / responsive issues
 * Write some stylish CSS rules to make a design that fits your game's theme. (google fonts)
+* New button: (Exchange 5 guesses for a new Dinosaur)
 
 ##### Word Guess Game Bonuses
 
