@@ -31,7 +31,6 @@ let dinosaurGenerator = {
                 + "</div>";
         }
         unknownDinosaurLetters = document.querySelectorAll('.dino-hide').length;
-        console.log(unknownDinosaurLetters);
     }
 };
 
@@ -77,12 +76,10 @@ let gameBoard = {
 function checkGuess() {
 
     document.onkeyup = function(e) {
-        //SET THE LETTER/GUESS UP FOR CHECKING:
         let unknownDinosaurLetters = document.getElementsByClassName('dino-hide').length;
+        //SET THE LETTER/GUESS UP FOR CHECKING:
         let currentGuess = e.key.toUpperCase();
         let currentGuessKey = e.keyCode;
-        console.log(unknownDinosaurLetters);
-        console.log(currentGuess);
 
         //no.1 - alert if CHAMPION
         //check if dinosaur word is complete:
@@ -92,7 +89,6 @@ function checkGuess() {
             gameBoard.gameReset(true);
             dinosaurGenerator.nameSelector();
             return;
-            //^ same as newGame() minus reset of wins tally:
         }
 
         //no.2 - alert if key is not a valid letter
@@ -113,7 +109,6 @@ function checkGuess() {
             let matchingGuess = document.getElementsByClassName(`${currentGuess}`);
             //if there is a matching guess, run a for loop to uncover the HTML:
             if (matchingGuess) {
-                console.log(matchingGuess);
                 for (let m = 0; m <= matchingGuess.length; m++) {
                     if (!(matchingGuess[m] === undefined)) {
                         matchingGuess[m].classList.remove('dino-hide');
