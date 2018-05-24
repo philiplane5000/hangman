@@ -1,27 +1,47 @@
 console.log('CONNECTED');
 
 //HTML LOCATION VARIABLES:
-let dinosaursArray = ["Velociraptor", "Spinosaurus", "Stegosaurus", "Avimimus", "Hadrosaurus", "Heptasteornis", "Heterodontosaurus", "Hylaeosaurus", "Kotasaurus", "Othnielia", "Jaxartosaurus", "Kritosaurus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops", "Ultrasauros", "Utahraptor", "Valdosaurus"];
-// let dinosaursArray = ["Tyrannosaurus Rex"]; /*WILL NOT WORK UNTIL SPACE KEY ADDED SOMEHOW */
 let wordPlaceHolder = document.querySelector(".word-container");
 let lettersGuessedStrPlaceHolder = document.querySelector(".letters-guessed-container");
 let resetBtn = document.querySelector(".siimple-btn--pink");
 let guessPlaceHolder = document.querySelector(".guesses")
 let winsPlaceHolder = document.querySelector(".wins");
 
-//NUMBER OR STRING VARIABLES TO AFFECT:
+//GLOBAL VARIABLES TO AFFECT:
 let guessesLeft = 10;
-let wins = 0;
+let totalWins = 0;
 let lettersGuessedStr = "";
 let currentDinosaur = "";
 let currentDinosaurNameAsArray = [];
 let unknownDinosaurLetters = 1;
 
+//DINO OBJECT: (ARRAY, NAME GENERATOR, SET:CURRENT-NAME, SET:CURRENT-DINO-NAME-AS-ARRAY)
+let dinosaurObj = {
+    namesArray: ["Apatosaurus", "Brontosaurus", "Brachiosaurus", "Triceratops", "Diplodocus", "Torvosaurus",  "Velociraptor", "Spinosaurus", "Stegosaurus", "Avimimus", "Hadrosaurus", "Heptasteornis", "Heterodontosaurus", "Hylaeosaurus", "Kotasaurus", "Othnielia", "Jaxartosaurus", "Kritosaurus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops", "Ultrasauros", "Utahraptor", "Valdosaurus", "Harpymimus", "Euhelopus", "Alvarezsaurus", "Deinodon", "Baryonyx", "Mononkyus", "Pentaceratops", "Poekilopleuron", "Itemirus"],
+    nameSelector: function () {
+        let randomDino = this.namesArray[(Math.floor(Math.random() * this.namesArray.length))].toUpperCase();
+        console.log(randomDino);
+        currentDinosaur = randomDino; /*for alert*/
+        for (let n = 0; n < randomDino.length; n++) {
+            currentDinosaurNameAsArray.push(randomDino[n]);
+        }
+        console.log(currentDinosaurNameAsArray);
+        for (let i = 0; i < currentDinosaurNameAsArray.length; i++) {
+            wordPlaceHolder.innerHTML += "<div class=\"letter-container\">"
+                + "<div class=\"dino-hide letter siimple-box--small " + currentDinosaurNameAsArray[i] + "\"" + ">" + currentDinosaurNameAsArray[i] + "</div>"
+                + "</div>";
+        }
+        unknownDinosaurLetters = document.querySelectorAll('.dino-hide').length;
+        console.log(unknownDinosaurLetters);
+    }
+};
+
+
 //GAME START:
 newGame();
 
-//EVENT LISTENERS:
-resetBtn.addEventListener("click", newGame);
+//BUTTONS:
+resetBtn.addEventListener("click", newGame); /*RESET GAME*/
 
 //GAME LOGIC:
 function newGame() {
@@ -29,7 +49,7 @@ function newGame() {
     resetWinsTally(0);
     resetGuessTally();
     wipeLetters();
-    dinosaurNameGenerator();
+    dinosaurObj.nameSelector();
     //power game logic:
     gameLogic();
     // updateBoard();
@@ -37,10 +57,10 @@ function newGame() {
 
 function newGameForChampion() {
     lettersGuessedStr = "";
-    unknownDinosaurLetters = 0;
+    unknownDinosaurLetters = 1;
     resetGuessTally();
     wipeLetters();
-    dinosaurNameGenerator();
+    dinosaurObj.nameSelector();
     //restart game logic:
     updateBoard();
     gameLogic();
@@ -53,7 +73,7 @@ function updateBoard() {
     lettersGuessedStrPlaceHolder.innerHTML = "";
     lettersGuessedStrPlaceHolder.innerHTML = "<h3>" + lettersGuessedStr + "</h3>";
     //UPDATE WINS TALLY: (possibly unneccessary)
-    resetWinsTally(wins);
+    resetWinsTally(totalWins);
 }
 
 function resetGuessTally() {
@@ -68,22 +88,22 @@ function wipeLetters() {
     lettersGuessedStrPlaceHolder.innerHTML = "<h3>" + lettersGuessedStr + "</h3>";
 }
 
-function dinosaurNameGenerator() {
-    let randomDino = dinosaursArray[(Math.floor(Math.random() * dinosaursArray.length))].toUpperCase();
-    console.log(randomDino);
-    currentDinosaur = randomDino; /*for alert*/
-    for (let j = 0; j < randomDino.length; j++) {
-        currentDinosaurNameAsArray.push(randomDino[j]);
-    }
-    console.log(currentDinosaurNameAsArray);
-    for (let i = 0; i < currentDinosaurNameAsArray.length; i++) {
-        wordPlaceHolder.innerHTML += "<div class=\"letter-container\">"
-            + "<div class=\"dino-hide letter siimple-box--small " + currentDinosaurNameAsArray[i] + "\"" + ">" + currentDinosaurNameAsArray[i] + "</div>"
-            + "</div>";
-    }
-    // unknownDinosaurLetters = document.querySelectorAll('.dino-hide').length;
-    // console.log(unknownDinosaurLetters);
-}
+// function dinosaurNameGenerator() {
+//     let randomDino = dinosaursArray[(Math.floor(Math.random() * dinosaursArray.length))].toUpperCase();
+//     console.log(randomDino);
+//     currentDinosaur = randomDino; /*for alert*/
+//     for (let j = 0; j < randomDino.length; j++) {
+//         currentDinosaurNameAsArray.push(randomDino[j]);
+//     }
+//     console.log(currentDinosaurNameAsArray);
+//     for (let i = 0; i < currentDinosaurNameAsArray.length; i++) {
+//         wordPlaceHolder.innerHTML += "<div class=\"letter-container\">"
+//             + "<div class=\"dino-hide letter siimple-box--small " + currentDinosaurNameAsArray[i] + "\"" + ">" + currentDinosaurNameAsArray[i] + "</div>"
+//             + "</div>";
+//     }
+//     // unknownDinosaurLetters = document.querySelectorAll('.dino-hide').length;
+//     // console.log(unknownDinosaurLetters);
+// }
 
 function gameLogic() {
 
@@ -100,7 +120,7 @@ function gameLogic() {
             //check if dinosaur word is complete:
             if (unknownDinosaurLetters <= 0) {
                 alert("CHAMPION!");
-                wins++;
+                totalWins++;
                 newGameForChampion();
                 return;
                 //^ same as newGame() minus reset of wins tally:
@@ -142,7 +162,7 @@ function gameLogic() {
                     alert("GAME OVER!");
                     alert("THE DINO THAT STUMPED YOU WAS:   " + currentDinosaur + " .");
                     alert("PLEASE REVIEW:" + "\n" + "www.DinoDictionary.com");
-                    wins = 0;
+                    totalWins = 0;
                     newGame();
                     return;
                 }
@@ -157,9 +177,8 @@ function gameLogic() {
 }
     //====================================================END OF GAME LOGIC FUNCTION====================================================//
 
-function resetWinsTally(wins) {
+function resetWinsTally(totalWins) {
     //UPDATE WINS SEPARATELY TO ALLOW FOR CARRYOVER WHEN GAME RESETS:
-    totalWinsCount = wins;
-    winsPlaceHolder.innerHTML = "<h3>" + totalWinsCount + "</h3>";
+    winsPlaceHolder.innerHTML = "<h3>" + totalWins + "</h3>";
 }
 
