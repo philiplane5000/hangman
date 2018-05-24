@@ -41,7 +41,7 @@ html {
 .letter {
     font-family: 'Amatic SC', cursive, 'Calibri';
     font-weight: 700;
-    font-size: 3em;
+    font-size: 4.6em;
 }
 
 .row {
@@ -77,7 +77,7 @@ html {
 }
 
 .letters-guessed-container h3 {
-    font-size: 3.6em;
+    font-size: 4.2em;
     margin: 10px;
     /* text-transform: uppercase; */
 }
