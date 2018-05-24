@@ -38,12 +38,6 @@ html {
 
 /* GAME BOARD: */
 
-.letter {
-    font-family: 'Amatic SC', cursive, 'Calibri';
-    font-weight: 700;
-    font-size: 4.6em;
-}
-
 .row {
     display: flex;
 }
@@ -93,7 +87,9 @@ html {
     flex: 1;
     margin: .15em;
     text-align: center;
-    font-size: 4em;
+    font-family: 'Amatic SC', cursive, 'Calibri';
+    font-weight: 700;
+    font-size: 6rem;
 }
 
 .dino-hide { /*class to toggle on individual DINO letter boxes*/
