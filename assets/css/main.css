@@ -38,8 +38,10 @@ html {
 
 /* GAME BOARD: */
 
-.word {
-    display: flex;
+.letter {
+    font-family: 'Amatic SC', cursive, 'Calibri';
+    font-weight: 700;
+    font-size: 3em;
 }
 
 .row {
@@ -71,10 +73,11 @@ html {
     justify-content: left;
     flex-wrap: wrap;
     float: none;
+    margin: 0 20px;
 }
 
 .letters-guessed-container h3 {
-    font-size: 4em;
+    font-size: 3.6em;
     margin: 10px;
     /* text-transform: uppercase; */
 }
