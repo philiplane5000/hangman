@@ -102,7 +102,7 @@ function checkGuess() {
         }
         //no.3 (a) check if current guesses matches a previously guessed entry:
         else if (lettersGuessedStr.includes(currentGuess) || correctLettersGuessedStr.includes(currentGuess)) {
-            (correctLettersGuessedStr.includes(currentGuess)) ? alert("YOU ALREADY CORRECTLY GUESSED:   " + "'" + currentGuess + "'") : alert("YOU SHOULD ALREADY KNOW THAT,  " + "'" + currentGuess + "'  IS NOT IN THERE...");            
+            (correctLettersGuessedStr.includes(currentGuess)) ? alert("YOU ALREADY CORRECTLY GUESSED:   " + "'" + currentGuess + "'") : alert("YOU SHOULD ALREADY KNOW THAT  " + "'" + currentGuess + "'  IS NOT IN THERE...");            
         }
         //==============================BEGIN CHECKING FOR GUESS ACCURACY:==============================//
 
