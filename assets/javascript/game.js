@@ -16,7 +16,7 @@ let unknownDinosaurLetters       = 1;
 
 //DINO OBJECT: (ARRAY, NAME GENERATOR, SET:CURRENT-NAME, SET:CURRENT-DINO-NAME-AS-ARRAY)
 let dinosaurGenerator = {
-    namesArr: ["Apatosaurus", "Brontosaurus", "Brachiosaurus", "Triceratops", "Diplodocus", "Torvosaurus", "Velociraptor", "Spinosaurus", "Nodosaurus", "Stegosaurus", "Pterodactyls", "Avimimus", "Hadrosaurus", "Heptasteornis", "Heterodontosaurus", "Hylaeosaurus", "Kotasaurus", "Othnielia", "Jaxartosaurus", "Kritosaurus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops", "Ultrasauros", "Utahraptor", "Valdosaurus", "Harpymimus", "Euhelopus", "Alvarezsaurus", "Deinodon", "Baryonyx", "Mononkyus", "Pentaceratops", "Poekilopleuron", "Itemirus", "Wannanosaurus"],
+    namesArr: ["Apatosaurus", "Brontosaurus", "Brachiosaurus", "Triceratops", "Diplodocus", "Torvosaurus", "Velociraptor", "Spinosaurus", "Nodosaurus", "Stegosaurus", "Pterodactyls", "Avimimus", "Hadrosaurus", "Heptasteornis", "Heterodontosaurus", "Hylaeosaurus", "Kotasaurus", "Othnielia", "Jaxartosaurus", "Kritosaurus", "Chindesaurus", "Citipati", "Chubutisaurus", "Khaan", "Sauropelta", "Styracosaurus", "Supersaurus", "Vulcanodon", "Zuniceratops", "Ultrasaurus", "Utahraptor", "Valdosaurus", "Harpymimus", "Euhelopus", "Alvarezsaurus", "Deinodon", "Baryonyx", "Mononkyus", "Pentaceratops", "Poekilopleuron", "Itemirus", "Wannanosaurus"],
     nameSelector: function () {
         let randomDino = this.namesArr[(Math.floor(Math.random() * this.namesArr.length))].toUpperCase();
         console.log(randomDino);
