@@ -4,6 +4,8 @@ let lettersGuessedStrPlaceHolder = document.querySelector(".letters-guessed-cont
 let restart                      = document.querySelector(".siimple-btn--pink");
 let guessPlaceHolder             = document.querySelector(".guesses")
 let winsPlaceHolder              = document.querySelector(".wins");
+let dinoGrowl                    = document.querySelector("#dinosaur-growl");
+let levelUp                      = document.querySelector("#level-up");
 
 //GLOBAL VARIABLES TO AFFECT:
 let guessesLeft                  = 10;
@@ -13,6 +15,10 @@ let correctLettersGuessedStr     = "";
 let currentDinosaur              = "";
 let currentDinosaurNameAsArray   = [];
 let unknownDinosaurLetters       = 1;
+
+//CUSTOM ALERTS:
+
+new customAlert();
 
 //DINO OBJECT: (ARRAY, NAME GENERATOR, SET:CURRENT-NAME, SET:CURRENT-DINO-NAME-AS-ARRAY)
 let dinosaurGenerator = {
@@ -84,17 +90,20 @@ function checkGuess() {
         //no.1 - alert if CHAMPION
         //check if dinosaur word is complete:
         if (unknownDinosaurLetters <= 0) {
+            levelUp.play();
             alert("CHAMPION!");
             totalWins++;
             gameBoard.gameReset(true);
             dinosaurGenerator.nameSelector();
             return;
         }
-
         //no.2 - alert if key is not a valid letter
         else if (currentGuessKey < 65 || currentGuessKey > 90) {
-            alert('LETTERS ONLY!');
-            // return;
+            if (currentGuessKey === 13) { window.customalert.done(); return } //ALLOW ENTER TO VOID FORCED MOUSE-CLICK ON ALERTS
+            else {
+                alert('LETTERS ONLY!');
+                return;
+            }
         }
         //no.3 (a) check if current guesses matches a previously guessed entry:
         else if (lettersGuessedStr.includes(currentGuess) || correctLettersGuessedStr.includes(currentGuess)) {
@@ -117,21 +126,21 @@ function checkGuess() {
             }
             // return;
         }
-
         /*all else if statements here END */
-        /*if nothing above applies, append guessed letter to "lettersGuessedStr" && deduct one guess*/
+        //else nothing above applies, append guessed letter to "lettersGuessedStr" && deduct one guess:
         else {
             lettersGuessedStr += (currentGuess + ",  ");
             console.log(lettersGuessedStr);
             guessesLeft--;
             if (guessesLeft === 0) {
+                dinoGrowl.play();
                 alert("GAME OVER!");
-                alert("THE DINO THAT STUMPED YOU WAS:   " + currentDinosaur + " .");
                 alert("PLEASE REVIEW:" + "\n" + "www.DinoDictionary.com");
+                alert("THE DINO THAT STUMPED YOU WAS:   " + currentDinosaur + " .");
                 totalWins = 0;
                 gameBoard.gameReset();
                 dinosaurGenerator.nameSelector();
-                return;
+                // return;
             }
             gameBoard.update();
         }
