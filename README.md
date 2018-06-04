@@ -9,4 +9,4 @@
 
 ## Acknowledgements & References:
 
-* Built using (https://siimple.juanes.xyz/ "Siimple") : *A Minimal CSS framework for flat and clean designs* by Josemi Juanes and Contributors 
+* Built using [SIIMPLE](https://siimple.juanes.xyz/ "Siimple") : *A Minimal CSS framework for flat and clean designs* by Josemi Juanes and Contributors 
