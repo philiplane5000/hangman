@@ -13,6 +13,6 @@
 
 <hr>
 
-<a href="https://philiptd5000.github.io/Hangman/" target="_blank"><h4>[ACTIVE LINK]</h4></a>
+<a href="https://philiptd5000.github.io/hangman/" target="_blank"><h4>[ACTIVE LINK]</h4></a>
 
 <hr>
