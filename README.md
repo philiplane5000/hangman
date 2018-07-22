@@ -10,3 +10,9 @@
 ## Acknowledgements & References:
 
 * Built using [SIIMPLE](https://siimple.juanes.xyz/ "Siimple") : *A Minimal CSS framework for flat and clean designs* by Josemi Juanes and Contributors 
+
+<hr>
+
+<a href="https://philiptd5000.github.io/Hangman/" target="_blank"><h4>[ACTIVE LINK]</h4></a>
+
+<hr>
